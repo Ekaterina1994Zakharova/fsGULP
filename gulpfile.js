@@ -32,6 +32,7 @@ let {src, dest} = require(`gulp`),
     del = require("del");
     const scss = require('gulp-sass')(require('sass')),
         autoprefixer = require("gulp-autoprefixer");
+    console.log("loram")
 
 
 
