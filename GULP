@@ -1,0 +1,216 @@
+1. Скачать и установить на сайте NODE JS. Установить.
+2.Создать папку на рабочем столе
+3. Открыть через права администратора Power Shell
+4. В открывшемся меню ввести Set-ExecutionPolicy RemoteSigned
+5.Далее Y
+6. Если нет ошибок, то идем далее. Обязательно нужно зайти в повершелл с правами админа.
+7.Прописываем  npm install --global gulp-cli
+8. Далее нам необходимо, открыть терминал именно в папке поекта.
+9.dВести в терминале  npm init
+10. Нам предложат заполнить анкету. Первый вопрос - ввести имя проекта.
+11. Далее выбрать версию - просто нажать энтер
+12. Далее описание - сборка gulp
+13. entry point - index.html
+14. Далее все пропускаем, нажимая "Энттер"
+15. автор прописываем
+16.энтер
+17.Y
+18. Энтер
+19.Открываем файл из папки в редакторе кодов. Package.json
+20.Открываем терминал в редакторе кода
+21.Теперь устанавливаем gulp для конкретного проекта
+22. Прописываем в терминале npm install gulp --save-dev
+26.наблюдаем процесс установки
+27. Для разработки сценария нужно создать файл gulpfile.js
+28.Создадим в папке Gulp папку с исходниками
+Папку называем #src так она будет высвечиваться всегда первой
+Переходим в новую папку и создаем еще несколько внутри : 1 - img; 2- js; 3- scss; 4-fonts.
+так же нужно создать несколько файлов. Файлы создаем прямо в редакторе кодов. Переходим в свою папку.
+Создаем новый файл index.html
+Далее переходим в папку scss и создаем в ней файл file.scss
+Далее переходим в папку js и создаем в ней файл script.js
+Отлично! Все папки созданы. Теперь необходимо проверить все ли работает. Для этого:
+Переходим в gulpfile.js
+вставляем вот такой код с сайта галп для проверки
+function defaultTask(cb) {
+  // place code for your default task here
+  cb();
+}
+
+exports.default = defaultTask
+
+Сохраняем
+Вызвать команду gulp в терминале
+должно получиться вот так
+[11:56:29] Using gulpfile ~\Desktop\fsGULP\gulpfile.js
+[11:56:29] Starting 'default'...
+[11:56:29] Finished 'default' after 4.2 ms
+Приступаем к работе.
+Первым делом создаем пути переменных.
+
+let project_folder="dist";
+let source_folder="#src";
+
+let path={
+    build:{
+        html: project_folder+"/",
+        css: project_folder+"/css/",
+        js:  project_folder+"/js/",
+        img: project_folder+"/img/",
+        fonts: project_folder+"/fonts/",
+
+},
+    src: {
+        html: source_folder+"/",
+        css: source_folder+"/scss/style.scss",
+        js:  source_folder+"/js/script.js",
+        img: source_folder+"/img/**/*.{jpg,png,svg,gif,ico,webp}",
+        fonts: source_folder+"/fonts/*.ttf",
+    },
+    wath: {
+        html: source_folder + "/**/*.html",
+        css: source_folder + "/scss/**/*.scss",
+        js: source_folder + "/js/**/*.js",
+        img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
+    }
+    clean:"./"+project_folder+"/"
+
+}
+let {src,dest} = require(`gulp`),
+    gulp = require(`gulp`),
+    Далее устанавливаем плагины
+открываем терминал и прописываем npm i browser-sync --save-dev
+let project_folder="dist";
+let source_folder="#src";
+
+let path={
+    build:{
+        html: project_folder+"/",
+        css: project_folder+"/css/",
+        js:  project_folder+"/js/",
+        img: project_folder+"/img/",
+        fonts: project_folder+"/fonts/",
+
+},
+    src: {
+        html: source_folder+"/*.html",
+        css: source_folder+"/scss/style.scss",
+        js:  source_folder+"/js/script.js",
+        img: source_folder+"/img/**/*.{jpg,png,svg,gif,ico,webp}",
+        fonts: source_folder+"/fonts/*.ttf",
+    },
+    wath: {
+        html: source_folder + "/**/*.html",
+        css: source_folder + "/scss/**/*.scss",
+        js: source_folder + "/js/**/*.js",
+        img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
+    },
+    clean:"./"+project_folder+"/"
+}
+let {src,dest} = require(`gulp`),
+    gulp = require(`gulp`),
+browsersync = require("browser-sync").create();
+function browserSync(params) {
+    browsersync.init({
+        server: {
+            baseDir:"./"+project_folder+"/"
+        },
+        port: 3000,
+        notify: false,
+    })
+}
+function html() {
+    return src(path.src.html)
+        .pipe(dest(path.build.html))
+        .pipe(browsersync.stream())
+
+}
+
+let build = gulp.series(html);
+let watch = gulp.parallel(build,browserSync);
+
+exports.html = html;
+exports.build = build;
+exports.watch = watch;
+exports.default = watch;
+вводим в терминале gulp
+далее прописываем в терминале npm i gulp-file-include --save-dev
+
+let project_folder="dist";
+let source_folder="#src";
+
+let path={
+    build:{
+        html: project_folder+"/",
+        css: project_folder+"/css/",
+        js:  project_folder+"/js/",
+        img: project_folder+"/img/",
+        fonts: project_folder+"/fonts/",
+
+},
+    src: {
+        html: source_folder+"/*.html",
+        css: source_folder+"/scss/style.scss",
+        js:  source_folder+"/js/script.js",
+        img: source_folder+"/img/**/*.{jpg,png,svg,gif,ico,webp}",
+        fonts: source_folder+"/fonts/*.ttf",
+    },
+    wath: {
+        html: source_folder + "/**/*.html",
+        css: source_folder + "/scss/**/*.scss",
+        js: source_folder + "/js/**/*.js",
+        img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
+    },
+    clean:"./"+project_folder+"/"
+}
+let {src,dest} = require(`gulp`),
+    gulp = require(`gulp`),
+browsersync = require("browser-sync").create();
+fileinclude = require("gulp-file-include");
+
+function browserSync(params) {
+    browsersync.init({
+        server: {
+            baseDir:"./"+project_folder+"/"
+        },
+        port: 3000,
+        notify: false,
+    })
+}
+function html() {
+    return src(path.src.html)
+        .pipe(fileinclude())
+        .pipe(dest(path.build.html))
+        .pipe(browsersync.stream())
+
+}
+
+let build = gulp.series(html);
+let watch = gulp.parallel(build,browserSync);
+
+exports.html = html;
+exports.build = build;
+exports.watch = watch;
+exports.default = watch;
+
+далее переходим в индекс хтмл. Называем титл - gulp
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gulp</title>
+</head>
+<body>
+@@includ("heder.html")
+<main class="main">
+
+</main>
+</body>
+</html>
+
+далее создаем header.html
+там прописываем
+<header class="header">
+    <h1>Шапка сайта</h1>
+</header>
+Gulp
